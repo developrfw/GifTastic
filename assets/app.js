@@ -1,16 +1,20 @@
-$(function(){
-    populateButtons(dogArray, 'searchButton', '#dogsView');
-})
+$( document ).ready(function() {
+    renderButtons(searchArray, 'searchButton', '#buttonsArea');
+    console.log( "ready!" );
+});
 
 
-var dogArray = ["golden retriever", "labrador", "border collie", "great dane", "great pyrenees", "greyhound", "australian shephard", "chihuahua", "dascshund"];
+var searchArray = ["golden retriever", "labrador", "border collie", "great dane", "great pyrenees", "greyhound", "australian shephard", "chihuahua", "dascshund"];
 
-function populateButtons(dogArray, classToAdd, areaToAddTo){
-    $(areaToAdd).empty();
-    for(var i=0; i < dogArray.length; i++)
+function renderButtons(searchArray, classToAdd, areaToAddTo){
+    $(areaToAddTo).empty();
+    for(var i=0; i < searchArray.length; i++){
         var a = $('<button>');
         a.addClass(classtoAdd);
-        a.attr("data-type", dogArray[i]);
-        a.text(dogArray[i]);
+        a.attr("data-type", searchArray[i]);
+        a.text(searchArray[i]);
         $(areaToAddTo).append(a);
+    }
+
 }
+
