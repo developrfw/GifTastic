@@ -24,10 +24,26 @@ $(document).on('click', ".searchButton" , function(){
     var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + type + "&api_key=R31pFJRv69lBkkbwiUza4FfSBDl3IWmk&limit=10"
     $.ajax({url:queryURL, method: 'GET'})
     .done(function(response){
-        console.log(response)
+        console.log(response + "This is the response from ajax")
     })
     
 })
 
 
 
+function renderButtons(){
+    
+    $("#search-buttons").empty();
+   
+    for (var i = 0; i < searchTerms.length; i++) {
+       
+        a = $("<button>");
+        // add class term-button
+        a.addClass("term-button");
+        // add attribute name
+        a.attr("name", searchTerms[i]);
+        // provide button text
+        a.text(searchTerms[i]);
+        $("#search-buttons").append(a);
+    }
+}
