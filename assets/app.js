@@ -32,22 +32,20 @@ $(document).on('click', ".value-button" , function(){
     $.ajax({
     url: queryURL,
     method: "GET",
-})
-
-
-  .then(function(response) {
-      
+}).then(function(response) {
+    console.log(response);
     var results = response.data;
     
 
     for (var i = 0; i < results.length; i++) {
 
-            var images = `<div>
-            <img src = ${results[i].images.fixed_height.url}>
-            <p> ${results[i].rating}
-            </div> 
+            var images = `
+                <div>
+                    <img src=${results[i].images.fixed_height.url} data-moving-pic-url=${results[i].images.fixed_height.url} data-still-pic-url=${results[i].images.fixed_height_still.url} data-is-moving="true">
+                    <p> ${results[i].rating}
+                </div> 
             `
-            console.log(images);
+            // console.log(images);
 
             $("#gifDiv").prepend(images);
         
@@ -66,14 +64,15 @@ $("#add-image").click(function(event){
 
 
 $("body").on("click","img", function() {
-     var state = $(this).attr("data-state");
+    console.log(this)
+    var isMoving = $(this).attr("data-is-moving");
      
-    if (state === "still") {
-      $(this).attr("src", $(this).attr("data-animate"));
-      $(this).attr("data-state", "animate");
+    if (isMoving === "true") {
+      $(this).attr("src", $(this).attr("data-still-pic-url"));
+      $(this).attr("data-is-moving", "false");
     } else {
-      $(this).attr("src", $(this).attr("data-still"));
-      $(this).attr("data-state", "still");
+      $(this).attr("src", $(this).attr("data-moving-pic-url"));
+      $(this).attr("data-is-moving", "true");
     }
   });
 
