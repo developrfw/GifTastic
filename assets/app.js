@@ -1,7 +1,7 @@
 
 var searchArray = ["golden retriever", "labrador", "border collie", "great dane", "great pyrenees", "greyhound", "australian shephard", "chihuahua", "dascshund"];
 
-
+var searchTerm = $(this).attr("name");
 
 
 // var gifURL = response.data[g].images.original_still.url;
@@ -77,5 +77,12 @@ $(document).on('click', ".value-button" , function(){
 
     });
 
+})
+
+$("#add-image").click(function(event){
+    event.preventDefault();
+    var searchTerm = $("#search-input").val().trim();
+    searchArray.push(searchTerm);
+    renderButtons();
 })
   
